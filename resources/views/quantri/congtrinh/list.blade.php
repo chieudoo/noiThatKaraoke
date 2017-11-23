@@ -1,7 +1,14 @@
 @extends('quantri.index')
 @section('name','Quản Lý Công Trình')
 @section('content')
-<a class="btn btn-primary add" data-click="add" data-toggle="modal" href='#modal-id'><i class="fa fa-plus"></i> Plus</a>
+
+@if(Auth::user()->id==1)
+<a class='btn btn-primary add' data-click='add' data-toggle='modal' href='#modal-id'><i class='fa fa-plus'></i> Plus</a>
+@else
+<?php 
+	QuyenAdd($quyen, Auth::user()->id)
+?>
+@endif
 <div class="modal fade" id="modal-id">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">

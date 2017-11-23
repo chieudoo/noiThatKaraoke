@@ -81,7 +81,12 @@ Route::group(['namespace'=>'quantri','middleware'=>'veryfiAdmin'],function(){
 
 	Route::group(['namespace'=>'role'],function(){
 		Route::get('win-create-role',['as'=>'role','uses'=>'RoleController@getRole']);
-		Route::post('win-role/{id}',['uses'=>'UserController@postRole'])->where(['id'=>'[0-9]+']);
+		Route::post('win-create-role',['uses'=>'RoleController@postRole']);
+		
+		Route::get('win-add-role',['as'=>'add','uses'=>'addUserRoleController@addUserRole']);
+		Route::post('win-add-role',['uses'=>'addUserRoleController@postAddUserRole']);
+
+		
 	});
 
 

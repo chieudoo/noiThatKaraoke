@@ -6,13 +6,20 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Congtrinh;
 use DateTime;
+use App\Models\AddUserRole;
+use Illuminate\Support\Facades\Auth;
 
 class congController extends Controller
 {
     public function getCong()
     {
     	$data = Congtrinh::get()->toArray();
-    	return view('quantri.congtrinh.list',['data'=>$data]);
+        $quyen = AddUserRole::with('role')->get()->toArray();
+        echo Auth::user()->id;
+        echo "<pre>";
+        print_r($quyen);
+        echo "</pre>";
+    	return view('quantri.congtrinh.list',['data'=>$data,'quyen'=>$quyen]);
     }
     public function postCong()
     {

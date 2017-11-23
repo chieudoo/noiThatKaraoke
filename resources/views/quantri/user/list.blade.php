@@ -3,8 +3,8 @@
 @section('content')
 @if(Auth::user()->id == 1)
 <a class="btn btn-primary add" data-click="add" data-toggle="modal" href='#modal-id'><i class="fa fa-plus"></i> Plus</a>
+<a href="{{ url('win-create-role') }}" class="fa fa-info"> Phân quyền</a>
 @endif
-<a href="" class="fa fa-info"> Phân quyền</a>
 <div class="modal fade" id="modal-id">
 	<div class="modal-dialog">
 		<div class="modal-content">

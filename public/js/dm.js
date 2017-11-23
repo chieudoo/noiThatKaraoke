@@ -544,7 +544,22 @@ $(document).ready(function() {
 					var them = $('.checkbox:eq(0) input[type="checkbox"]:checked').val();
 					var sua = $('.checkbox:eq(1) input[type="checkbox"]:checked').val();
 					var xoa = $('.checkbox:eq(2) input[type="checkbox"]:checked').val();
+					console.log('aloha');
 
+					
+			});
+		}
+		// end if win-create-role
+	});
+	
+			$('.create').click(function(e){
+				e.preventDefault();
+
+					var name = $('.form-group:eq(0) input[type="text"]').val();
+					var them = $('.checkbox:eq(0) input[type="checkbox"]:checked').val();
+					var sua = $('.checkbox:eq(1) input[type="checkbox"]:checked').val();
+					var xoa = $('.checkbox:eq(2) input[type="checkbox"]:checked').val();
+					console.log('aloha');
 
 					if(them == null){
 						them = 0;
@@ -557,12 +572,13 @@ $(document).ready(function() {
 					}
 
 					var formdata = new FormData();
+					formdata.append('name',name);
 					formdata.append('them',them);
 					formdata.append('sua',sua);
 					formdata.append('xoa',xoa);
 
 					$.ajax({
-						url: 'win-role/'+data.id,
+						url: 'win-create-role',
 						type: 'POST',
 						contentType:false,
 						processData:false,
@@ -571,20 +587,35 @@ $(document).ready(function() {
 							if(result == 0){
 								setTimeout(function(){
 									$('.success').html('<i class="fa fa-check" style="color: green;font-size: 20px"> Success</i>').slideDown();
-									$('.kengang').addClass('dira');
+									// $('.kengang').addClass('dira');
 								},500);
 
 								setTimeout(function(){
-									window.location.href= url + url2;
+									window.location.href= url + "/win-create-role";
 								},1000);
 							}
 						}
 					});
-			});
-		}
-		// end if win-create-role
-	});
-	
 
+			});
+
+			$('.add_user_role').click(function(e){
+				e.preventDefault();
+
+				var role_id = $('.form-group:eq(0) select').val();
+				var user_id = $('.form-group:eq(1) select').val();
+				
+				$.post("win-add-role",{role:role_id,user:user_id},function(result){
+					setTimeout(function(){
+						$('.success').html('<i class="fa fa-check" style="color: green;font-size: 20px"> Success</i>').slideDown();
+						// $('.kengang').addClass('dira');
+					},500);
+
+					setTimeout(function(){
+						window.location.href= url + "/quan-tri";
+					},1000);
+				});
+
+			});
 
 });

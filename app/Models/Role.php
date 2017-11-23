@@ -13,4 +13,8 @@ class Role extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function addrole(){
+    	return $this->hasMany('App\Models\AddUserRole');
+    }
 }

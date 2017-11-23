@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class AddUserRole extends Model
+{
+    protected $table = "add-user-role";
+    protected $fillable = [];
+
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Role','role_id');
+    }
+
+}

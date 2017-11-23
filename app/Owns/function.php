@@ -51,9 +51,8 @@
 			}else{
 				echo "<td><i class='fa fa-close' style='color:red'></i> Disable</td>";
 			}
-			echo "<td>
-						<a class='btn btn-primary edit' data-click='edit' data-user='".$item['user_id']."' data-name='".$item['name']."' data-status='".$item['status']."' data-id='".$item['id']."' data-mota='".$item['text']."' data-noidung='".$item['noidung']."' data-link='".$item['link']."' data-toggle='modal' href='#modal-id'><i class='fa fa-edit'></i></a>
-						<a class='btn btn-danger' href='".url('delete-cong-trinh/'.$item['id'])."' onclick='return confirm(\"Are you sure ?\")'><i class='fa fa-trash'></i></a>
+			echo "<td>"; QuyenEdit();
+						echo "<a class='btn btn-danger' href='".url('delete-cong-trinh/'.$item['id'])."' onclick='return confirm(\"Are you sure ?\")'><i class='fa fa-trash'></i></a>
 					</td>
 				</tr>";
 		}
@@ -188,8 +187,35 @@
 					<a class='btn btn-primary edit' data-click='edit' data-id='".$item['id']."' data-noidung='".$item['noidung']."' data-img='".$item['logo']."' data-face='".$item['face']."' data-toggle='modal' href='#modal-id'><i class='fa fa-edit'></i></a>
 				</td>
 			</tr>";
+
 		}
 	}
+	function QuyenAdd($data,$id)
+	{
+		foreach ($data as $item) {
+			if($item['user_id'] == $id){
+				if($item['role']['role_add'] == 1){
+					echo "<a class='btn btn-primary add' data-click='add' data-toggle='modal' href='#modal-id'><i class='fa fa-plus'></i> Plus</a>";
+				}else{
+					echo "Ban khong duoc phep them";
+				}
+			}
+		}
+	}
+	function QuyenEdit($data,$id){
+		foreach ($data as $item) {
+			if($item['user_id'] == $id){
+				if($item['role']['role_edit'] == 1){
+					echo "<a class='btn btn-primary edit' data-click='edit' data-toggle='modal' href='#modal-id'><i class='fa fa-edit'></i></a>";
+				}else{
+					echo "<i class='fa fa-close'></i>";
+				}
+			}
+		}
+	}
+
+/*<a class='btn btn-primary edit' data-click='edit' data-user='".$item['user_id']."' data-name='".$item['name']."' data-status='".$item['status']."' data-id='".$item['id']."' data-mota='".$item['text']."' data-noidung='".$item['noidung']."' data-link='".$item['link']."' data-toggle='modal' href='#modal-id'><i class='fa fa-edit'></i></a>*/
+
 	/*function website*/
 
 	function menu($data,$parent)
